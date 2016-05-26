@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <target>System.out</target>
+        <encoder>
+            <pattern>
+                %date{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{1} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--<file>logs/log</file>-->
+
+    <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+    <!--&lt;!&ndash; daily rollover &ndash;&gt;-->
+    <!--<fileNamePattern>logs/log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
+
+    <!--&lt;!&ndash; keep one year worth of history &ndash;&gt;-->
+    <!--<maxHistory>365</maxHistory>-->
+    <!--</rollingPolicy>-->
+
+    <!--<append>true</append>-->
+    <!--<encoder>-->
+    <!--<pattern>%date{MM/dd HH:mm:ss} %-5level[%.15thread] %logger{1} - %msg%n</pattern>-->
+    <!--</encoder>-->
+    <!--</appender>-->
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/project.log</file>
+        <encoder>
+            <pattern>
+                %date %-5level [%thread] %logger{128} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="akka" level="INFO"/>
+    <logger name="slick.jdbc" level="INFO"/>
+
+    <logger name="reactivemongo.api.Cursor" level="OFF"/>
+    <logger name="reactivemongo.api.Failover" level="OFF"/>
+    <logger name="reactivemongo.core.actors.MongoDBSystem" level="DEBUG"/>
+    <logger name="reactivemongo.core.actors.MonitorActor" level="DEBUG"/>
+
+    <root level="INFO">
+        <!--<root level="DEBUG">-->
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
